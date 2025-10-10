@@ -1,0 +1,16 @@
+[
+    {
+      
+      "title": "To-Do List App",
+      "description":
+        "A simple and efficient task management web app built with PHP and MySQL that allows users to add, update, and delete daily tasks.",
+      "image":"./assets/todo.png"
+    },
+    {
+
+      "title": "Portfolio Website",
+      "description":
+        "A modern and responsive portfolio website built with React JS to showcase my projects and skills as a Full Stack Developer student.",
+      "image": "./assets/portfolio.png"
+    }
+  ]
