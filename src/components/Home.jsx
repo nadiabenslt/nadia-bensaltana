@@ -12,6 +12,7 @@ export default function Home() {
               src={img}
               alt="developer illustration"
               className="hero-img img-fluid"
+              style={{"with": "100px"}}
             />
           </div>
           <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
