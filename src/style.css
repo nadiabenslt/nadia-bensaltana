@@ -60,6 +60,7 @@ body {
 }
 img[alt="developer illustration"]{
     border-radius: 50%;
+  width:100px;
 }
 
 .btn-accent {
