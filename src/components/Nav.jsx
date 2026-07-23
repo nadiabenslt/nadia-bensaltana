@@ -1,32 +1,88 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const NAV_LINKS = [
+  { href: "#home",     label: "Home" },
+  { href: "#about",    label: "About" },
+  { href: "#skills",   label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact",  label: "Contact" },
+];
 
 export default function Navbar() {
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [activeId,  setActiveId]  = useState("home");
+
+  /* --- Scroll effects --- */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* --- Active section via IntersectionObserver --- */
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((l) => l.href.slice(1));
+    const observers = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveId(id); },
+        { rootMargin: "-40% 0px -50% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  /* --- Smooth scroll handler --- */
+  const scrollTo = (e, href) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg fixed-top custom-navbar">
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} role="navigation">
       <div className="container">
-        <Link className="navbar-brand fw-bold" to="/about">
-          <span className="brand-accent">Nadia</span> 
-        </Link>
+        <div className="navbar-inner">
+          {/* Logo */}
+          <a
+            href="#home"
+            className="navbar-logo"
+            onClick={(e) => scrollTo(e, "#home")}
+          >
+            Nadia.
+          </a>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          {/* Hamburger */}
+          <button
+            className={`nav-toggle ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span /><span /><span />
+          </button>
 
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/skills">Skills</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/projects">Projects</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
+          {/* Links */}
+          <ul className={`nav-links ${menuOpen ? "open" : ""}`} role="list">
+            {NAV_LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  className={`nav-link ${activeId === href.slice(1) ? "active" : ""}`}
+                  onClick={(e) => scrollTo(e, href)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

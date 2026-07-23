@@ -1,16 +1,16 @@
 [
-    {
-      
-      "title": "To-Do List App",
-      "description":
-        "A simple and efficient task management web app built with PHP and MySQL that allows users to add, update, and delete daily tasks.",
-      "image": "https://j.top4top.io/p_3572rllef1.png"
-    },
-    {
-
-      "title": "Portfolio Website",
-      "description":
-        "A modern and responsive portfolio website built with React JS to showcase my projects and skills as a Full Stack Developer student.",
-      "image":"https://k.top4top.io/p_3572jbt8q2.png"
-    }
-  ]
+  {
+    "title": "ToDo App",
+    "description": "Application ToDo avec architecture Frontend/Backend séparée (React.js + Laravel). API REST sécurisée avec gestion complète des opérations CRUD. Validation des données et gestion des erreurs côté serveur. Interface utilisateur responsive, communication via API REST.",
+    "image": "https://j.top4top.io/p_3572rllef1.png",
+    "tags": ["Laravel", "React.js", "REST API", "MySQL"],
+    "github": "https://github.com/nadiabenslt"
+  },
+  {
+    "title": "Portfolio Website",
+    "description": "Portfolio personnel moderne et responsive construit avec React.js et Vite pour présenter mes projets, compétences et expériences en tant que développeuse Full Stack.",
+    "image": "https://k.top4top.io/p_3572jbt8q2.png",
+    "tags": ["React.js", "Vite", "CSS3", "JavaScript"],
+    "github": "https://github.com/nadiabenslt"
+  }
+]
