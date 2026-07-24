@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Code, Database, Layout, Server, Settings, Wrench, Globe } from "lucide-react";
+import { Database, Layout, Server, Wrench, Globe } from "lucide-react";
 
-/* ── Skill categories from CV ── */
+/* ── Skill categories ── */
 const categories = [
   {
     title: "Frontend",
@@ -20,14 +20,14 @@ const categories = [
     iconClass: "icon-cyan",
     icon: <Server size={18} />,
     skills: [
-      { name: "PHP",         pct: 85 },
-      { name: "Laravel",     pct: 78 },
-      { name: "Express.js",  pct: 70 },
-      { name: "REST API",    pct: 82 },
+      { name: "PHP",        pct: 85 },
+      { name: "Laravel",    pct: 78 },
+      { name: "Express.js", pct: 70 },
+      { name: "REST API",   pct: 82 },
     ],
   },
   {
-    title: "Bases de données",
+    title: "Databases",
     iconClass: "icon-pink",
     icon: <Database size={18} />,
     skills: [
@@ -36,7 +36,7 @@ const categories = [
     ],
   },
   {
-    title: "Outils & Autres",
+    title: "Tools & Other",
     iconClass: "icon-green",
     icon: <Wrench size={18} />,
     skills: [
@@ -44,17 +44,17 @@ const categories = [
       { name: "Docker",                pct: 60 },
       { name: "Figma",                 pct: 65 },
       { name: "UML / Merise",          pct: 72 },
-      { name: "POO / MVC",             pct: 78 },
+      { name: "OOP / MVC",             pct: 78 },
     ],
   },
 ];
 
-/* ── Languages from CV ── */
+/* ── Languages ── */
 const languages = [
-  { lang: "Arabe",    level: "Langue maternelle", pct: 100 },
-  { lang: "Français", level: "Niveau intermédiaire", pct: 70 },
-  { lang: "Anglais",  level: "Niveau A2",          pct: 40 },
-  { lang: "Allemand", level: "Niveau A1 (en cours)", pct: 20 },
+  { lang: "Arabic",   level: "Native language",       pct: 100 },
+  { lang: "French",   level: "Intermediate level",    pct: 70  },
+  { lang: "English",  level: "A2 level",              pct: 40  },
+  { lang: "German",   level: "A1 level (in progress)", pct: 20  },
 ];
 
 export default function Skills() {
@@ -93,9 +93,9 @@ export default function Skills() {
         {/* Header */}
         <div className="skills-section-inner reveal">
           <span className="section-tag" style={{ justifyContent: "center" }}>Expertise</span>
-          <h2 className="section-title">Compétences Techniques</h2>
+          <h2 className="section-title">Technical Skills</h2>
           <p style={{ color: "var(--clr-text-muted)", maxWidth: "520px", margin: "1rem auto 0", fontSize: "0.95rem" }}>
-            Un aperçu des technologies et outils que j'utilise pour construire des expériences web modernes.
+            An overview of the technologies and tools I use to build modern web experiences.
           </p>
           <div className="section-divider" />
         </div>
@@ -133,9 +133,9 @@ export default function Skills() {
         <div style={{ marginTop: "4rem" }}>
           <div className="reveal" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <span className="section-tag" style={{ justifyContent: "center" }}>
-              <Globe size={14} /> Langues
+              <Globe size={14} /> Languages
             </span>
-            <h3 className="timeline-section-title" style={{ textAlign: "center" }}>Langues</h3>
+            <h3 className="timeline-section-title" style={{ textAlign: "center" }}>Languages</h3>
           </div>
 
           <div className="lang-grid reveal">

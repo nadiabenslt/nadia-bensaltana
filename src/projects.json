@@ -1,16 +1,21 @@
 [
   {
-    "title": "ToDo App",
-    "description": "Application ToDo avec architecture Frontend/Backend séparée (React.js + Laravel). API REST sécurisée avec gestion complète des opérations CRUD. Validation des données et gestion des erreurs côté serveur. Interface utilisateur responsive, communication via API REST.",
-    "image": "https://j.top4top.io/p_3572rllef1.png",
-    "tags": ["Laravel", "React.js", "REST API", "MySQL"],
-    "github": "https://github.com/nadiabenslt"
+    "title": "Store Product — React.js",
+    "description": "E-commerce application built with React.js and Vite. Consumes a Fake API (FakeStoreAPI) to display products dynamically. Includes category filtering, shopping cart management, and a fully responsive interface.",
+    "tags": ["React.js", "Vite", "Fake API", "JavaScript", "CSS3"],
+    "github": "https://github.com/nadiabenslt/store_product_reactjs",
+    "demo": "https://nadiabenslt.github.io/store_product_reactjs/"
   },
   {
-    "title": "Portfolio Website",
-    "description": "Portfolio personnel moderne et responsive construit avec React.js et Vite pour présenter mes projets, compétences et expériences en tant que développeuse Full Stack.",
-    "image": "https://k.top4top.io/p_3572jbt8q2.png",
-    "tags": ["React.js", "Vite", "CSS3", "JavaScript"],
-    "github": "https://github.com/nadiabenslt"
+    "title": "IT Intervention Management",
+    "description": "Web application for managing and tracking IT intervention requests at the Agence Urbaine de Laâyoune. Built with Object-Oriented PHP (OOP) following MVC architecture. Features two interfaces (Client & Admin), request tracking, statistics, and report generation.",
+    "tags": ["PHP", "OOP", "MVC", "MySQL", "Bootstrap", "JavaScript"],
+    "github": "https://github.com/nadiabenslt/gestion_intervention"
+  },
+  {
+    "title": "Todo App — Full Stack",
+    "description": "Multi-tier task management application with a secure Laravel REST API (Sanctum) and a React frontend. Features token-based authentication, full CRUD operations, advanced filtering by status, keyword search and date ranges, inline status updates, and light/dark theme.",
+    "tags": ["Laravel", "React.js", "Sanctum", "MySQL", "REST API"],
+    "github": "https://github.com/nadiabenslt/todo_app"
   }
 ]

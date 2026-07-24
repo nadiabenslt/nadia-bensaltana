@@ -1,12 +1,39 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+/* ─────────────────────────────────────────────────────────────
+   EmailJS config
+   1. Go to https://www.emailjs.com  → sign up (free)
+   2. Add an Email Service  →  copy the Service ID below
+   3. Create an Email Template with these variables:
+         {{from_name}}  {{from_email}}  {{subject}}  {{message}}
+      Set "To email" = bensaltananadia6@gmail.com
+      Copy the Template ID below
+   4. Go to Account → API Keys → copy your Public Key below
+   ───────────────────────────────────────────────────────────── */
+const EMAILJS_SERVICE_ID  = "service_portfolio";   // ← replace with yours
+const EMAILJS_TEMPLATE_ID = "template_contact";    // ← replace with yours
+const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";     // ← replace with yours
 
 export default function Contact() {
   const sectionRef = useRef(null);
+  const formRef    = useRef(null);
 
+  const [status, setStatus]     = useState("idle"); // idle | sending | success | error
+  const [formData, setFormData] = useState({
+    from_name:  "",
+    from_email: "",
+    subject:    "",
+    message:    "",
+  });
+
+  /* ── Intersection observer for reveal animations ── */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) =>
-        entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        }),
       { threshold: 0.1 }
     );
     sectionRef.current
@@ -14,6 +41,35 @@ export default function Contact() {
       .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  /* ── Input change handler ── */
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  /* ── Submit handler ── */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+      setStatus("success");
+      setFormData({ from_name: "", from_email: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
+
+  const isSending = status === "sending";
 
   return (
     <section className="contact-section" id="contact" ref={sectionRef}>
@@ -26,9 +82,9 @@ export default function Contact() {
         {/* Header */}
         <div className="contact-header reveal">
           <span className="section-tag" style={{ justifyContent: "center" }}>Contact</span>
-          <h2 className="section-title">Travaillons Ensemble</h2>
+          <h2 className="section-title">Let's Work Together</h2>
           <p style={{ color: "var(--clr-text-muted)", maxWidth: "500px", margin: "1rem auto 0", fontSize: "0.95rem" }}>
-            Un projet en tête ou simplement envie de discuter ? Je serais ravie d'avoir de vos nouvelles.
+            Have a project in mind or just want to say hello? I'd love to hear from you.
           </p>
           <div className="section-divider" />
         </div>
@@ -37,10 +93,10 @@ export default function Contact() {
 
           {/* ── Info panel ── */}
           <div className="contact-info reveal-left">
-            <h3 className="contact-info-title">Contactez-moi</h3>
+            <h3 className="contact-info-title">Get In Touch</h3>
             <p className="contact-info-desc">
-              Je suis actuellement à la recherche d'opportunités professionnelles.
-              Que vous ayez une question ou une idée de projet, n'hésitez pas !
+              I'm currently open to new professional opportunities.
+              Whether you have a question or a project idea, feel free to reach out!
             </p>
 
             <div className="contact-item">
@@ -62,7 +118,7 @@ export default function Contact() {
             <div className="contact-item">
               <div className="contact-item-icon"><i className="bi bi-telephone" /></div>
               <div className="contact-item-text">
-                <div className="label">Téléphone</div>
+                <div className="label">Phone</div>
                 <a href="tel:+212710206233" className="value" style={{ color: "var(--clr-text)" }}>
                   +212 710 206 233
                 </a>
@@ -72,44 +128,28 @@ export default function Contact() {
             <div className="contact-item">
               <div className="contact-item-icon"><i className="bi bi-geo-alt" /></div>
               <div className="contact-item-text">
-                <div className="label">Localisation</div>
-                <div className="value">Boujdour, Maroc</div>
+                <div className="label">Location</div>
+                <div className="value">Boujdour, Morocco</div>
               </div>
             </div>
 
             <div className="contact-item">
               <div className="contact-item-icon"><i className="bi bi-clock" /></div>
               <div className="contact-item-text">
-                <div className="label">Disponibilité</div>
-                <div className="value">Ouverte aux opportunités</div>
+                <div className="label">Availability</div>
+                <div className="value">Open to opportunities</div>
               </div>
             </div>
 
             {/* Social */}
             <div className="social-row">
-              <a
-                href="https://github.com/nadiabenslt"
-                target="_blank"
-                rel="noreferrer"
-                className="social-btn"
-                aria-label="GitHub"
-              >
+              <a href="https://github.com/nadiabenslt" target="_blank" rel="noreferrer" className="social-btn" aria-label="GitHub">
                 <i className="bi bi-github" />
               </a>
-              <a
-                href="https://www.linkedin.com/in/nadia-bensaltana-8b8202334"
-                target="_blank"
-                rel="noreferrer"
-                className="social-btn"
-                aria-label="LinkedIn"
-              >
+              <a href="https://www.linkedin.com/in/nadia-bensaltana-8b8202334" target="_blank" rel="noreferrer" className="social-btn" aria-label="LinkedIn">
                 <i className="bi bi-linkedin" />
               </a>
-              <a
-                href="mailto:bensaltananadia6@gmail.com"
-                className="social-btn"
-                aria-label="Email"
-              >
+              <a href="mailto:bensaltananadia6@gmail.com" className="social-btn" aria-label="Email">
                 <i className="bi bi-envelope-fill" />
               </a>
             </div>
@@ -117,41 +157,91 @@ export default function Contact() {
 
           {/* ── Form ── */}
           <div className="contact-form-wrap reveal-right">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Merci ! Je vous répondrai très bientôt 🚀");
-                e.target.reset();
-              }}
-            >
+            <form ref={formRef} onSubmit={handleSubmit} noValidate>
+
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div className="form-group">
-                  <label className="form-label" htmlFor="contact-name">Nom complet</label>
-                  <input id="contact-name" type="text" className="form-input" placeholder="Votre nom" required />
+                  <label className="form-label" htmlFor="contact-name">Full Name</label>
+                  <input
+                    id="contact-name"
+                    name="from_name"
+                    type="text"
+                    className="form-input"
+                    placeholder="Your name"
+                    value={formData.from_name}
+                    onChange={handleChange}
+                    required
+                    disabled={isSending}
+                  />
                 </div>
                 <div className="form-group">
-                  <label className="form-label" htmlFor="contact-email">Adresse e-mail</label>
-                  <input id="contact-email" type="email" className="form-input" placeholder="votre@email.com" required />
+                  <label className="form-label" htmlFor="contact-email">Email Address</label>
+                  <input
+                    id="contact-email"
+                    name="from_email"
+                    type="email"
+                    className="form-input"
+                    placeholder="your@email.com"
+                    value={formData.from_email}
+                    onChange={handleChange}
+                    required
+                    disabled={isSending}
+                  />
                 </div>
               </div>
 
               <div className="form-group">
-                <label className="form-label" htmlFor="contact-subject">Sujet</label>
-                <input id="contact-subject" type="text" className="form-input" placeholder="De quoi s'agit-il ?" />
+                <label className="form-label" htmlFor="contact-subject">Subject</label>
+                <input
+                  id="contact-subject"
+                  name="subject"
+                  type="text"
+                  className="form-input"
+                  placeholder="What's this about?"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  disabled={isSending}
+                />
               </div>
 
               <div className="form-group">
                 <label className="form-label" htmlFor="contact-message">Message</label>
                 <textarea
                   id="contact-message"
+                  name="message"
                   className="form-textarea"
-                  placeholder="Parlez-moi de votre projet ou de votre idée..."
+                  placeholder="Tell me about your project or idea..."
+                  value={formData.message}
+                  onChange={handleChange}
                   required
+                  disabled={isSending}
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary form-submit">
-                <i className="bi bi-send" /> Envoyer le message
+              {/* Status feedback */}
+              {status === "success" && (
+                <div className="form-alert form-alert-success">
+                  <i className="bi bi-check-circle-fill" />
+                  Message sent successfully! I'll get back to you very soon.
+                </div>
+              )}
+              {status === "error" && (
+                <div className="form-alert form-alert-error">
+                  <i className="bi bi-exclamation-triangle-fill" />
+                  Something went wrong. Please try again or email me directly.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className={`btn btn-primary form-submit${isSending ? " sending" : ""}`}
+                disabled={isSending}
+              >
+                {isSending ? (
+                  <><span className="spinner" /> Sending...</>
+                ) : (
+                  <><i className="bi bi-send" /> Send Message</>
+                )}
               </button>
             </form>
           </div>
@@ -162,7 +252,7 @@ export default function Contact() {
       {/* Footer */}
       <footer className="footer" style={{ marginTop: "5rem" }}>
         <p>
-          © 2026 <span>Nadia Bensaltana</span>. Fait avec ❤️ et beaucoup de café.
+          © 2026 <span>Nadia Bensaltana</span>. Built with ❤️ and lots of coffee.
         </p>
       </footer>
     </section>

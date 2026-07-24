@@ -4,39 +4,39 @@ import img from "../assets/profile.png";
 /* ── Data from CV ── */
 const experience = [
   {
-    role: "Développeuse Web Full Stack (Stage)",
+    role: "Full Stack Web Developer (Internship)",
     company: "Agence Urbaine de Laâyoune‑Sakia El Hamra",
-    location: "Laâyoune, Maroc",
-    period: "Janvier 2026",
+    location: "Laâyoune, Morocco",
+    period: "January 2026",
     tasks: [
-      "Développement d'une application de gestion des interventions informatiques.",
-      "Conception et développement du backend avec PHP et MySQL.",
-      "Mise en place des opérations CRUD.",
-      "Application de l'architecture MVC pour un code structuré et maintenable.",
-      "Développement d'une interface utilisateur responsive.",
-      "Participation aux tests, correction des bugs et amélioration des performances.",
+      "Developed a web application for managing IT intervention requests.",
+      "Designed and built the backend using PHP (OOP) and MySQL.",
+      "Implemented full CRUD operations for all entities.",
+      "Applied MVC architecture for a structured and maintainable codebase.",
+      "Built a responsive user interface with Bootstrap.",
+      "Participated in testing, bug fixing, and performance improvements.",
     ],
   },
 ];
 
 const education = [
   {
-    degree: "Technicien Spécialisé en Développement Digital",
-    option: "Option Web Full Stack",
+    degree: "Specialized Technician — Digital Development",
+    option: "Option: Full Stack Web",
     school: "Cité des Métiers et des Compétences (CMC)",
-    location: "Laâyoune, Maroc",
-    period: "Sept. 2024 – Juil. 2026",
+    location: "Laâyoune, Morocco",
+    period: "Sept. 2024 – Jul. 2026",
   },
   {
-    degree: "Baccalauréat — Sciences Physiques et Chimiques",
+    degree: "Baccalaureate — Physical & Chemical Sciences",
     option: null,
-    school: "Qualifiant Al Baqali",
-    location: "Boujdour, Maroc",
+    school: "Qualifying High School Al Baqali",
+    location: "Boujdour, Morocco",
     period: "2022 – 2023",
   },
 ];
 
-const qualities = ["Esprit d'équipe", "Adaptabilité", "Curiosité", "Résolution de problèmes"];
+const qualities = ["Team Spirit", "Adaptability", "Curiosity", "Problem Solving"];
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -90,14 +90,13 @@ export default function About() {
             </h2>
 
             <p className="about-bio">
-              Jeune développeuse Full Stack diplômée en{" "}
-              <strong>Développement Digital (option Web Full Stack)</strong>. Passionnée par le
-              développement d'applications web modernes, j'ai acquis au cours de ma formation et
-              de mon stage de solides compétences en{" "}
-              <strong>Laravel, React.js, PHP, JavaScript, MySQL</strong> et le développement
-              d'<strong>API REST</strong>. Rigoureuse, curieuse et motivée, je souhaite intégrer
-              une entreprise afin de contribuer à des projets concrets tout en développant
-              davantage mes compétences.
+              A passionate Full Stack Developer with a diploma in{" "}
+              <strong>Digital Development (Full Stack Web)</strong>. I specialize in building
+              modern web applications and have developed strong skills in{" "}
+              <strong>Laravel, React.js, PHP, JavaScript, MySQL</strong> and{" "}
+              <strong>REST API</strong> development through my studies and internship.
+              Detail-oriented, curious, and driven — I am eager to join a team where I can
+              contribute to meaningful projects while continuing to grow.
             </p>
 
             {/* Stats */}
@@ -107,7 +106,7 @@ export default function About() {
                 <div className="stat-label">Technologies</div>
               </div>
               <div className="stat-card">
-                <div className="stat-number">2+</div>
+                <div className="stat-number">3+</div>
                 <div className="stat-label">Projects</div>
               </div>
               <div className="stat-card">
@@ -143,8 +142,8 @@ export default function About() {
         {/* ── Experience ── */}
         <div style={{ marginTop: "5rem" }}>
           <div className="reveal" style={{ marginBottom: "2.5rem" }}>
-            <span className="section-tag">Expérience</span>
-            <h3 className="timeline-section-title">Expérience Professionnelle</h3>
+            <span className="section-tag">Experience</span>
+            <h3 className="timeline-section-title">Professional Experience</h3>
           </div>
 
           {experience.map((exp, i) => (
@@ -173,8 +172,8 @@ export default function About() {
         {/* ── Education ── */}
         <div style={{ marginTop: "4rem" }}>
           <div className="reveal" style={{ marginBottom: "2.5rem" }}>
-            <span className="section-tag">Formation</span>
-            <h3 className="timeline-section-title">Formation</h3>
+            <span className="section-tag">Education</span>
+            <h3 className="timeline-section-title">Academic Background</h3>
           </div>
 
           <div className="edu-grid">
