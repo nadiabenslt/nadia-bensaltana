@@ -2,18 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 /* ─────────────────────────────────────────────────────────────
-   EmailJS config
-   1. Go to https://www.emailjs.com  → sign up (free)
-   2. Add an Email Service  →  copy the Service ID below
-   3. Create an Email Template with these variables:
-         {{from_name}}  {{from_email}}  {{subject}}  {{message}}
-      Set "To email" = bensaltananadia6@gmail.com
-      Copy the Template ID below
-   4. Go to Account → API Keys → copy your Public Key below
+   EmailJS credentials — stored in .env (never pushed to GitHub)
+   Copy .env.example → .env and fill in your real values.
    ───────────────────────────────────────────────────────────── */
-const EMAILJS_SERVICE_ID  = "service_portfolio";   // ← replace with yours
-const EMAILJS_TEMPLATE_ID = "template_contact";    // ← replace with yours
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";     // ← replace with yours
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const sectionRef = useRef(null);
