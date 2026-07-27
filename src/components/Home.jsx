@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import img from "../assets/profile.png";
+import img from "../assets/Image_Nadia_Bensaltana.png";
 
 const roles = [
   "Full Stack Developer",

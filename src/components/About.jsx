@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import img from "../assets/profile.png";
+import img from "../assets/Image_Nadia_Bensaltana.png";
 
 /* ── Data from CV ── */
 const experience = [
